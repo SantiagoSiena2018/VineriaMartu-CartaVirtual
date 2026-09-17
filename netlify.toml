@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Es una SPA: cualquier ruta la resuelve el router en el cliente.
+# Sin esto, recargar /carta/algun-vino daría 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
