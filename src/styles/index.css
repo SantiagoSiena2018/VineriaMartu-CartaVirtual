@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Tokens de diseño — Vinería Martu
+   Paleta derivada del logo: óvalo rojo con interior amarillo dorado.
+   El dorado NO pasa contraste AA sobre crema: usarlo solo como línea
+   decorativa o acento gráfico, nunca para texto chico.
+   ========================================================================== */
+@theme {
+  --color-borgona: #9b1b1e;
+  --color-borgona-oscuro: #6e1214;
+  --color-rojo: #c8102e;
+  --color-dorado: #f2c230;
+  --color-dorado-oscuro: #a8791a;
+  --color-crema: #faf6ef;
+  --color-crema-oscuro: #f0e8db;
+  --color-carbon: #1c1a19;
+  --color-carbon-suave: #4a4442;
+
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+
+  --ease-suave: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Compensa el header fijo cuando se navega a un ancla */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-crema font-sans text-carbon antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+  }
+
+  /* Foco visible y consistente en todo el sitio (accesibilidad por teclado) */
+  :focus-visible {
+    outline: 2px solid var(--color-borgona);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Animación de aparición al scrollear; la activa useRevealOnScroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 0.7s var(--ease-suave),
+      transform 0.7s var(--ease-suave);
+  }
+
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Respeta la preferencia del sistema por menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vineriamartu.netlify.app/sitemap.xml
