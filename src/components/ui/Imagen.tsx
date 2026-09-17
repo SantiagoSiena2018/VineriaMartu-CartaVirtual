@@ -1,6 +1,5 @@
 import { useState } from 'react'
-
-const FALLBACK = '/img/productos/placeholder-botella.svg'
+import { IMAGEN_GENERICA } from '../../lib/imagenes'
 
 interface Props {
   src: string
@@ -18,7 +17,7 @@ interface Props {
  * Es habitual que falte la foto de un producto recién cargado en el JSON;
  * en ese caso se muestra la botella genérica en vez de un ícono roto.
  */
-export function Imagen({ src, alt, className = '', fallback = FALLBACK, prioridad = false }: Props) {
+export function Imagen({ src, alt, className = '', fallback = IMAGEN_GENERICA, prioridad = false }: Props) {
   const [fuente, setFuente] = useState(src)
 
   return (

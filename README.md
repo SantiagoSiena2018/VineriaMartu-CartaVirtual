@@ -22,8 +22,9 @@ Otros comandos:
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Levanta el sitio en modo desarrollo, con recarga automática |
-| `npm run build` | Genera el sitio final en `dist/` (y regenera el `sitemap.xml`) |
+| `npm run build` | Genera el sitio final en `dist/` (y regenera el mapa de fotos y el `sitemap.xml`) |
 | `npm run preview` | Sirve lo que generó `build`, para revisarlo antes de publicar |
+| `npm run imagenes` | Vuelve a leer las fotos de `public/img/productos/` y avisa a qué productos les falta |
 | `npm run lint` | Revisa el código |
 | `npm run typecheck` | Verifica los tipos de TypeScript |
 
@@ -48,8 +49,9 @@ El archivo tiene esta forma:
 }
 ```
 
-> ⚠️ Los productos que vienen cargados son **datos de prueba** para ver el sitio funcionando.
-> Hay que reemplazarlos por el catálogo real.
+> ⚠️ El catálogo cargado (23 productos) se armó a partir de las fotos que hay en
+> `public/img/productos/`. **Faltan los precios**: mientras el campo `precio` no esté, la carta
+> muestra "Consultar". Conviene revisar también nombres, cosechas y descripciones.
 
 ### Un producto completo
 
@@ -67,7 +69,6 @@ El archivo tiene esta forma:
   "descripcion": "El Malbec clásico de la casa, fruta madura y taninos redondos.",
   "notasCata": "Ciruela y cereza negra, con un dejo de violetas y vainilla del roble.",
   "maridaje": "Asado, bife de chorizo, quesos estacionados.",
-  "imagen": "/img/productos/catena-malbec.jpg",
   "destacado": true,
   "disponible": true
 }
@@ -89,7 +90,7 @@ El archivo tiene esta forma:
 | `descripcion` | Sí | Una o dos líneas |
 | `notasCata` | No | Si no está, la sección no aparece |
 | `maridaje` | No | Si no está, la sección no aparece |
-| `imagen` | Sí | Ruta a la foto (ver abajo). Si el archivo no existe, se muestra una botella genérica |
+| `imagen` | No | **Normalmente no se usa.** La foto se busca sola por el `id` (ver más abajo). Solo se completa si una foto está guardada con otro nombre |
 | `destacado` | Sí | `true` lo pone en el carrusel del inicio y arriba en la carta |
 | `disponible` | Sí | `false` lo muestra atenuado con el cartel "Sin stock" (no lo esconde) |
 
@@ -100,6 +101,38 @@ El archivo tiene esta forma:
 - `precio`, `cosecha`, `destacado` y `disponible` van **sin comillas**. El resto, con comillas.
 - Si algo queda mal cargado, al correr `npm run dev` aparece un aviso en la consola del navegador
   (F12 → Consola) diciendo exactamente qué producto y qué campo está mal. El sitio no se rompe.
+
+### Las fotos se conectan solas
+
+**No hay que cargar la ruta de la foto en ningún lado.** El sitio busca, en
+`public/img/productos/`, el archivo que se llame igual que el `id` del producto:
+
+| Producto (`id`) | Archivo de la foto |
+|---|---|
+| `rutini-malbec` | `public/img/productos/rutini-malbec.jpg` |
+| `gran-enemigo` | `public/img/productos/gran-enemigo.jpg` |
+
+Sirve cualquier formato: `.jpg`, `.png`, `.webp`, `.avif` o `.svg`. Si hubiera dos archivos con el
+mismo nombre y distinta extensión, gana el más liviano (`.webp` antes que `.jpg`).
+
+Al producto que no tenga foto se le muestra una botella genérica: **nunca queda una imagen rota**.
+
+Para saber qué fotos faltan, alcanza con correr:
+
+```bash
+npm run imagenes
+```
+
+Lista producto por producto con qué nombre hay que guardar cada archivo, y avisa si hay fotos cuyo
+nombre no coincide con ningún producto (típicamente, un error de tipeo). El mismo aviso aparece en la
+consola del navegador al correr `npm run dev`.
+
+> Si agregás una foto con `npm run dev` ya corriendo, hay que reiniciarlo para que la tome.
+> El listado se regenera solo en cada `npm run dev` y `npm run build`.
+
+**Consejo para las fotos de botellas**: que sean todas más o menos del mismo tamaño y con fondo
+claro o transparente. La tarjeta las muestra centradas sobre un fondo neutro, así que quedan
+prolijas aunque vengan de distintas fuentes. Un ancho de 600–900 px alcanza y sobra.
 
 ### Filtros que se arman solos
 
@@ -120,7 +153,8 @@ listo, no hay que tocar código.
 | Qué | Dónde va |
 |---|---|
 | **Logo** | `public/img/logo-martu.svg` y `public/img/logo-martu-claro.svg` (este último es el del footer oscuro) |
-| **Fotos de productos** | `public/img/productos/` — el nombre del archivo tiene que coincidir con el campo `imagen` del JSON |
+| **Fotos de productos** | `public/img/productos/`, con el `id` del producto como nombre (ver arriba) |
+| **Fotos descartadas** | `public/img/productos/duplicadas/` — quedan guardadas ahí y el sitio las ignora |
 | **Foto del hero** (portada) | `public/img/hero.svg` |
 | **Foto de "Sobre nosotros"** | `public/img/nosotros.svg` |
 | **Galería del local** | `public/img/galeria/galeria-1.svg` a `galeria-8.svg` |
@@ -131,13 +165,9 @@ listo, no hay que tocar código.
 > Las imágenes que vienen ahora son **placeholders** hechos a mano, no fotos reales.
 > El logo es una recreación: hay que reemplazarlo por el archivo original.
 
-Si se suben archivos `.jpg` o `.png` en lugar de `.svg`, hay que actualizar la extensión donde se
-nombra el archivo: los productos en `productos.json`, y el resto en los componentes de
-`src/components/home/`.
-
-**Consejo para las fotos de botellas**: que sean todas más o menos del mismo tamaño y con fondo
-claro o transparente. La tarjeta las muestra centradas sobre un fondo neutro, así que quedan
-prolijas aunque vengan de distintas fuentes.
+Las fotos de productos aceptan cualquier extensión sin tocar nada. Para el resto (hero, galería,
+categorías), si subís `.jpg` o `.png` en lugar de `.svg` hay que actualizar la extensión en los
+componentes de `src/components/home/`.
 
 ---
 
@@ -190,6 +220,7 @@ la presentación, y la presentación no sabe de dónde salen los datos.
 ```
 src/
   data/        Datos: productos.json, negocio.ts y el punto de entrada al catálogo
+               (imagenes.generado.json lo escribe el script: no se edita a mano)
   types/       Qué forma tiene un producto, y el validador que avisa si el JSON está mal
   lib/         Lógica pura: filtrar, ordenar, buscar, formatear precios, SEO, contacto
   hooks/       Comportamiento reutilizable de React (filtros en la URL, foco, scroll, SEO)
@@ -216,8 +247,11 @@ agregar un carrito es sumar una capa, no reescribir lo que hay.
 
 - [ ] Número de WhatsApp (`src/data/negocio.ts`)
 - [ ] Historia del local, en el bloque "Sobre Vinería Martu" (`src/components/home/SobreNosotros.tsx`, buscar `[COMPLETAR]`)
-- [ ] Reemplazar los 18 productos de prueba por el catálogo real
-- [ ] Fotos reales: logo original, local, galería y botellas
+- [ ] **Cargar los precios** en `src/data/productos.json` (hoy todos muestran "Consultar")
+- [ ] Revisar nombres, cosechas y descripciones de los 23 productos
+- [ ] Sumar el resto del catálogo (blancos, rosados, cervezas, aperitivos): cada categoría aparece sola en el sitio cuando tiene productos
+- [ ] Fotos reales del logo original, el local y la galería
+- [ ] Fotos de las botellas nuevas que se vayan sumando (`npm run imagenes` dice cuáles faltan)
 - [ ] Dominio definitivo (`sitioUrl` en `src/data/negocio.ts` y `public/robots.txt`)
 
 ---
