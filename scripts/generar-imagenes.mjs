@@ -12,6 +12,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, extname, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { normalizarImagenes } from './normalizar-imagenes.mjs'
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const CARPETA = 'public/img/productos'
@@ -44,10 +45,18 @@ for (const archivo of archivos) {
   if (mejor) mapa[id] = archivo
 }
 
+// Empareja el tamaño de las botellas antes de armar el mapa.
+const normalizadas = await normalizarImagenes()
+
 const rutas = Object.fromEntries(
   Object.entries(mapa)
     .sort(([a], [b]) => a.localeCompare(b))
-    .map(([id, archivo]) => [id, `/img/productos/${archivo}`]),
+    .map(([id, archivo]) => [
+      id,
+      // La versión emparejada es la que se muestra; si no se pudo generar,
+      // se usa la original para no dejar al producto sin foto.
+      normalizadas[id] ? `/img/productos/normalizadas/${normalizadas[id]}` : `/img/productos/${archivo}`,
+    ]),
 )
 
 writeFileSync(resolve(raiz, 'src/data/imagenes.generado.json'), `${JSON.stringify(rutas, null, 2)}\n`)

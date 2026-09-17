@@ -73,42 +73,45 @@ export function FilterPanel({ facetas, subcategorias, criterios, alternar, setRa
         </Grupo>
       )}
 
-      <Grupo titulo="Precio">
-        <div className="flex items-end gap-3">
-          <label className="flex-1 text-xs text-carbon-suave">
-            Desde
-            <input
-              type="number"
-              inputMode="numeric"
-              min={0}
-              step={1000}
-              placeholder={String(facetas.precioMin)}
-              value={criterios.precioMin ?? ''}
-              onChange={(evento) => setRangoPrecio(numeroOTexto(evento.target.value), criterios.precioMax)}
-              className="mt-1.5 w-full rounded-sm border border-carbon/20 bg-white px-3 py-2 text-sm text-carbon"
-            />
-          </label>
+      {/* Sin precios cargados, filtrar por precio dejaría la carta vacía: no se ofrece. */}
+      {facetas.precioMax > 0 && (
+        <Grupo titulo="Precio">
+          <div className="flex items-end gap-3">
+            <label className="flex-1 text-xs text-carbon-suave">
+              Desde
+              <input
+                type="number"
+                inputMode="numeric"
+                min={0}
+                step={1000}
+                placeholder={String(facetas.precioMin)}
+                value={criterios.precioMin ?? ''}
+                onChange={(evento) => setRangoPrecio(numeroOTexto(evento.target.value), criterios.precioMax)}
+                className="mt-1.5 w-full rounded-sm border border-carbon/20 bg-white px-3 py-2 text-sm text-carbon"
+              />
+            </label>
 
-          <label className="flex-1 text-xs text-carbon-suave">
-            Hasta
-            <input
-              type="number"
-              inputMode="numeric"
-              min={0}
-              step={1000}
-              placeholder={String(facetas.precioMax)}
-              value={criterios.precioMax ?? ''}
-              onChange={(evento) => setRangoPrecio(criterios.precioMin, numeroOTexto(evento.target.value))}
-              className="mt-1.5 w-full rounded-sm border border-carbon/20 bg-white px-3 py-2 text-sm text-carbon"
-            />
-          </label>
-        </div>
+            <label className="flex-1 text-xs text-carbon-suave">
+              Hasta
+              <input
+                type="number"
+                inputMode="numeric"
+                min={0}
+                step={1000}
+                placeholder={String(facetas.precioMax)}
+                value={criterios.precioMax ?? ''}
+                onChange={(evento) => setRangoPrecio(criterios.precioMin, numeroOTexto(evento.target.value))}
+                className="mt-1.5 w-full rounded-sm border border-carbon/20 bg-white px-3 py-2 text-sm text-carbon"
+              />
+            </label>
+          </div>
 
-        <p className="mt-3 text-xs text-carbon-suave">
-          En carta: de {formatearPrecio(facetas.precioMin)} a {formatearPrecio(facetas.precioMax)}. Los
-          productos a consultar quedan fuera al filtrar por precio.
-        </p>
-      </Grupo>
+          <p className="mt-3 text-xs text-carbon-suave">
+            En carta: de {formatearPrecio(facetas.precioMin)} a {formatearPrecio(facetas.precioMax)}. Los
+            productos a consultar quedan fuera al filtrar por precio.
+          </p>
+        </Grupo>
+      )}
     </div>
   )
 }

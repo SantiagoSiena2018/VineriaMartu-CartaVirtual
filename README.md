@@ -24,7 +24,7 @@ Otros comandos:
 | `npm run dev` | Levanta el sitio en modo desarrollo, con recarga automática |
 | `npm run build` | Genera el sitio final en `dist/` (y regenera el mapa de fotos y el `sitemap.xml`) |
 | `npm run preview` | Sirve lo que generó `build`, para revisarlo antes de publicar |
-| `npm run imagenes` | Vuelve a leer las fotos de `public/img/productos/` y avisa a qué productos les falta |
+| `npm run imagenes` | Reprocesa las fotos de `public/img/productos/` (empareja tamaños) y avisa a qué productos les falta |
 | `npm run lint` | Revisa el código |
 | `npm run typecheck` | Verifica los tipos de TypeScript |
 
@@ -130,9 +130,25 @@ consola del navegador al correr `npm run dev`.
 > Si agregás una foto con `npm run dev` ya corriendo, hay que reiniciarlo para que la tome.
 > El listado se regenera solo en cada `npm run dev` y `npm run build`.
 
-**Consejo para las fotos de botellas**: que sean todas más o menos del mismo tamaño y con fondo
-claro o transparente. La tarjeta las muestra centradas sobre un fondo neutro, así que quedan
-prolijas aunque vengan de distintas fuentes. Un ancho de 600–900 px alcanza y sobra.
+### Los tamaños se emparejan solos
+
+Las fotos de botellas vienen de fuentes distintas: unas son cuadradas con la botella chica en el
+medio, otras vienen ajustadas al borde. Puestas tal cual, en la grilla una botella se ve el doble
+que la de al lado.
+
+Para evitarlo, al correr `npm run dev` o `npm run build` cada foto se procesa: **se recorta el fondo
+blanco que sobra y la botella se centra en un lienzo de 900×1200** (la proporción 3:4 de la tarjeta).
+Todas terminan viéndose del mismo alto.
+
+- Las fotos originales **no se tocan**: quedan donde las pusiste.
+- Las versiones emparejadas se escriben en `public/img/productos/normalizadas/` y son las que usa el
+  sitio. Esa carpeta se regenera sola; no hace falta editarla.
+- Si el procesamiento falla por lo que sea, el sitio usa la foto original. Nunca queda sin imagen.
+
+**Consejo para las fotos**: que tengan fondo blanco o transparente y la botella entera, sin recortes.
+El tamaño no importa mucho porque se reescala, pero conviene que el lado más largo tenga al menos
+800 px. Si una foto viene con fondo de color o con otro objeto al lado, el recorte no la va a poder
+ajustar bien.
 
 ### Filtros que se arman solos
 
@@ -155,6 +171,7 @@ listo, no hay que tocar código.
 | **Logo** | `public/img/logo-martu.svg` y `public/img/logo-martu-claro.svg` (este último es el del footer oscuro) |
 | **Fotos de productos** | `public/img/productos/`, con el `id` del producto como nombre (ver arriba) |
 | **Fotos descartadas** | `public/img/productos/duplicadas/` — quedan guardadas ahí y el sitio las ignora |
+| **Fotos ya emparejadas** | `public/img/productos/normalizadas/` — generadas automáticamente, no editar |
 | **Foto del hero** (portada) | `public/img/hero.svg` |
 | **Foto de "Sobre nosotros"** | `public/img/nosotros.svg` |
 | **Galería del local** | `public/img/galeria/galeria-1.svg` a `galeria-8.svg` |
@@ -258,5 +275,6 @@ agregar un carrito es sumar una capa, no reescribir lo que hay.
 
 ## Stack
 
-Vite · React · TypeScript · Tailwind CSS · React Router · Embla Carousel.
+Vite · React · TypeScript · Tailwind CSS · React Router · Embla Carousel · sharp (solo para
+procesar las fotos al compilar).
 Sin backend ni base de datos: todo el contenido sale de archivos del repositorio.
