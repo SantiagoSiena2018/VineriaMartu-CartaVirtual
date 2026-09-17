@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npm run sitemap && tsc -b && vite build",
+    "dev": "npm run imagenes && vite",
+    "build": "npm run imagenes && npm run sitemap && tsc -b && vite build",
     "sitemap": "node scripts/generar-sitemap.mjs",
     "lint": "oxlint",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "imagenes": "node scripts/generar-imagenes.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

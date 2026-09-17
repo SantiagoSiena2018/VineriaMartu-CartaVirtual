@@ -14,7 +14,6 @@
       "descripcion": "El Malbec clásico de la casa, fruta madura y taninos redondos.",
       "notasCata": "Ciruela y cereza negra, con un dejo de violetas y vainilla del roble. Boca amplia y final persistente.",
       "maridaje": "Asado, bife de chorizo, quesos estacionados.",
-      "imagen": "/img/productos/catena-malbec.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -31,7 +30,6 @@
       "descripcion": "Malbec de guarda, concentrado y elegante.",
       "notasCata": "Frutos rojos maduros, especias dulces y un paso por roble bien integrado.",
       "maridaje": "Cortes vacunos a la parrilla, pastas con salsas intensas.",
-      "imagen": "/img/productos/luigi-bosca-malbec.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -48,7 +46,6 @@
       "descripcion": "Fresco y frutado, muy buena relación precio-calidad.",
       "notasCata": "Frutos rojos, notas florales y acidez viva que lo hace muy tomable.",
       "maridaje": "Empanadas, milanesas, picadas.",
-      "imagen": "/img/productos/zuccardi-serie-a-malbec.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -65,7 +62,6 @@
       "descripcion": "Cabernet de todos los días, estructurado y accesible.",
       "notasCata": "Pimiento, grosella negra y un fondo mentolado.",
       "maridaje": "Carnes rojas, guisos, quesos duros.",
-      "imagen": "/img/productos/alamos-cabernet.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -82,7 +78,6 @@
       "descripcion": "Uno de los Cabernet Franc más premiados del país.",
       "notasCata": "Frutos negros, pimiento asado y especias. Taninos finos y largo final.",
       "maridaje": "Cordero, carnes de caza, risotto de hongos.",
-      "imagen": "/img/productos/pulenta-cabernet-franc.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -99,7 +94,6 @@
       "descripcion": "Blend emblemático, equilibrado y de gran volumen en boca.",
       "notasCata": "Cassis, ciruela y chocolate amargo, con roble presente pero prolijo.",
       "maridaje": "Ojo de bife, cordero patagónico.",
-      "imagen": "/img/productos/rutini-blend.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -115,7 +109,6 @@
       "descripcion": "Bonarda de autor, jugosa y con personalidad.",
       "notasCata": "Frutos rojos ácidos, hierbas y un toque salino.",
       "maridaje": "Achuras, embutidos, comida de campo.",
-      "imagen": "/img/productos/el-enemigo-bonarda.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -132,7 +125,6 @@
       "descripcion": "Torrontés seco y aromático, lejos del estilo dulzón.",
       "notasCata": "Jazmín, ralladura de pomelo y durazno blanco. Final seco y fresco.",
       "maridaje": "Sushi, ceviche, comida tailandesa.",
-      "imagen": "/img/productos/susana-balbo-torrontes.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -149,7 +141,6 @@
       "descripcion": "Chardonnay de altura, con buena tensión y volumen.",
       "notasCata": "Cítricos, pera y un fondo de avellana tostada.",
       "maridaje": "Pescados de mar, pollo al horno, pastas con crema.",
-      "imagen": "/img/productos/catena-chardonnay.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -165,7 +156,6 @@
       "descripcion": "Pinot Noir del paralelo 45, del extremo sur vitivinícola.",
       "notasCata": "Frambuesa, té negro y una acidez filosa muy patagónica.",
       "maridaje": "Salmón, cordero, hongos.",
-      "imagen": "/img/productos/otronia-pinot-noir.jpg",
       "destacado": false,
       "disponible": false
     },
@@ -182,7 +172,6 @@
       "descripcion": "Rosado seco, ideal para tomar bien frío.",
       "notasCata": "Frutilla, pomelo rosado y final liviano.",
       "maridaje": "Picadas, ensaladas, comida de verano.",
-      "imagen": "/img/productos/saurus-rosado.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -198,7 +187,6 @@
       "descripcion": "El espumante más pedido para brindar.",
       "notasCata": "Manzana verde, cítricos y burbuja fina.",
       "maridaje": "Aperitivo, entradas frías, mariscos.",
-      "imagen": "/img/productos/chandon-extra-brut.jpg",
       "destacado": true,
       "disponible": true
     },
@@ -214,7 +202,6 @@
       "descripcion": "Método tradicional con largo tiempo sobre lías.",
       "notasCata": "Pan tostado, almendras y cítricos. Muy seco.",
       "maridaje": "Ostras, quesos, pescados grillados.",
-      "imagen": "/img/productos/cruzat-brut-nature.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -229,7 +216,6 @@
       "precio": 4200,
       "descripcion": "Lager ámbar, maltosa y de amargor suave.",
       "maridaje": "Hamburguesas, papas, picadas.",
-      "imagen": "/img/productos/patagonia-amber.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -244,7 +230,6 @@
       "precio": 3800,
       "descripcion": "IPA lupulada y amarga, un clásico de la cerveza artesanal argentina.",
       "maridaje": "Comida picante, quesos azules, fritos.",
-      "imagen": "/img/productos/antares-ipa.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -258,7 +243,6 @@
       "precio": 17300,
       "descripcion": "El aperitivo argentino por excelencia.",
       "maridaje": "Con cola y mucho hielo.",
-      "imagen": "/img/productos/fernet-branca.jpg",
       "destacado": false,
       "disponible": true
     },
@@ -274,7 +258,6 @@
       "descripcion": "Gin argentino con yerba mate, pomelo rosado, eucalipto y peperina.",
       "notasCata": "Herbal y cítrico, con el amargor característico de la yerba.",
       "maridaje": "Gin tonic con pomelo.",
-      "imagen": "/img/productos/apostoles-gin.jpg",
       "destacado": true,
       "disponible": false
     },
@@ -286,7 +269,6 @@
       "presentacion": "1,5 L",
       "precio": 2600,
       "descripcion": "Agua saborizada sin azúcar, para acompañar.",
-      "imagen": "/img/productos/levite-pomelo.jpg",
       "destacado": false,
       "disponible": true
     }

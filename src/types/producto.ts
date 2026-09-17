@@ -40,7 +40,11 @@ export const ORDEN_CATEGORIAS: Categoria[] = [
   'sin-alcohol',
 ]
 
-export interface Producto {
+/**
+ * Producto tal como se carga en productos.json.
+ * `imagen` es opcional: si no está, se resuelve por el id (ver data/catalogo.ts).
+ */
+export interface ProductoJson {
   id: string
   nombre: string
   categoria: Categoria
@@ -55,9 +59,14 @@ export interface Producto {
   descripcion: string
   notasCata?: string
   maridaje?: string
-  imagen: string
+  imagen?: string
   destacado: boolean
   disponible: boolean
+}
+
+/** Producto ya listo para mostrar: la imagen siempre está resuelta. */
+export interface Producto extends ProductoJson {
+  imagen: string
 }
 
 function esCategoria(valor: unknown): valor is Categoria {
@@ -68,7 +77,7 @@ function esCategoria(valor: unknown): valor is Categoria {
  * Revisa el catálogo y devuelve los problemas encontrados.
  * Se ejecuta solo en desarrollo (ver `src/data/productos.ts`).
  */
-export function validarCatalogo(productos: Producto[]): string[] {
+export function validarCatalogo(productos: ProductoJson[]): string[] {
   const problemas: string[] = []
   const vistos = new Set<string>()
 
@@ -81,7 +90,6 @@ export function validarCatalogo(productos: Producto[]): string[] {
 
     if (!producto.nombre) problemas.push(`${donde}: falta "nombre"`)
     if (!producto.presentacion) problemas.push(`${donde}: falta "presentacion"`)
-    if (!producto.imagen) problemas.push(`${donde}: falta "imagen"`)
 
     if (!esCategoria(producto.categoria)) {
       problemas.push(
