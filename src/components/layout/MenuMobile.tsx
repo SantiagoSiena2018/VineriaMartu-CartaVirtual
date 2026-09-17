@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { NEGOCIO } from '../../data/negocio'
 import { CANAL_INSTAGRAM, canalPrincipal } from '../../lib/contacto'
 import { useScrollBloqueado, useTrampaDeFoco } from '../../hooks/useTrampaDeFoco'
 import { estilosBoton } from '../ui/estilosBoton'
+import { Logo } from '../ui/Logo'
 import { NAVEGACION } from './navegacion'
 
 interface Props {
@@ -39,7 +39,7 @@ export function MenuMobile({ abierto, alCerrar }: Props) {
         className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-crema px-6 pt-6 pb-10 shadow-xl"
       >
         <div className="flex items-center justify-between">
-          <img src="/img/logo-martu.svg" alt={NEGOCIO.nombre} className="h-12 w-auto" width={300} height={160} />
+          <Logo className="h-12 w-auto" />
           <button
             type="button"
             onClick={cerrar}

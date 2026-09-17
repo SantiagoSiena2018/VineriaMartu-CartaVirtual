@@ -13,6 +13,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, extname, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { normalizarImagenes } from './normalizar-imagenes.mjs'
+import { generarLogo } from './generar-logo.mjs'
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const CARPETA = 'public/img/productos'
@@ -60,6 +61,14 @@ const rutas = Object.fromEntries(
 )
 
 writeFileSync(resolve(raiz, 'src/data/imagenes.generado.json'), `${JSON.stringify(rutas, null, 2)}\n`)
+
+// El logo también se prepara acá: se le saca el fondo blanco para que sirva
+// igual sobre la crema del header y sobre el carbón del footer.
+const logo = await generarLogo()
+if (logo) {
+  writeFileSync(resolve(raiz, 'src/data/logo.generado.json'), `${JSON.stringify(logo, null, 2)}\n`)
+  console.log(`logo: ${logo.src}${logo.ancho ? ` (${logo.ancho}x${logo.alto})` : ''}`)
+}
 
 // Avisos para que sea obvio qué falta, sin frenar el build.
 const sinFoto = productos.filter((producto) => !producto.imagen && !rutas[producto.id])

@@ -1,8 +1,9 @@
 import { useState, type ReactNode } from 'react'
-import { LEYENDA_LEGAL, NEGOCIO } from '../data/negocio'
+import { LEYENDA_LEGAL } from '../data/negocio'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { useScrollBloqueado, useTrampaDeFoco } from '../hooks/useTrampaDeFoco'
 import { Boton } from './ui/Boton'
+import { Logo } from './ui/Logo'
 
 const CLAVE = 'martu.mayor18'
 
@@ -38,13 +39,7 @@ export function AgeGate({ children }: { children: ReactNode }) {
         aria-labelledby="age-gate-titulo"
         className="w-full max-w-md rounded-sm bg-crema px-6 py-10 text-center shadow-2xl sm:px-10"
       >
-        <img
-          src="/img/logo-martu.svg"
-          alt={NEGOCIO.nombre}
-          className="mx-auto h-24 w-auto"
-          width={300}
-          height={160}
-        />
+        <Logo className="mx-auto h-24 w-auto" prioridad />
 
         {abierto ? (
           <>

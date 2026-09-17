@@ -1,3 +1,4 @@
+import { LOGO } from '../data/logo'
 import { DIRECCION_COMPLETA, NEGOCIO } from '../data/negocio'
 import type { Producto } from '../types/producto'
 
@@ -25,7 +26,7 @@ export function schemaNegocio() {
     '@context': 'https://schema.org',
     '@type': 'LiquorStore',
     name: NEGOCIO.nombre,
-    image: urlAbsoluta('/img/logo-martu.svg'),
+    image: urlAbsoluta(LOGO.src),
     url: NEGOCIO.sitioUrl,
     telephone: NEGOCIO.telefono.tel,
     priceRange: '$$',

@@ -168,7 +168,7 @@ listo, no hay que tocar código.
 
 | Qué | Dónde va |
 |---|---|
-| **Logo** | `public/img/logo-martu.svg` y `public/img/logo-martu-claro.svg` (este último es el del footer oscuro) |
+| **Logo** | `public/img/` — cualquier archivo cuyo nombre empiece con `logo` (ver abajo) |
 | **Fotos de productos** | `public/img/productos/`, con el `id` del producto como nombre (ver arriba) |
 | **Fotos descartadas** | `public/img/productos/duplicadas/` — quedan guardadas ahí y el sitio las ignora |
 | **Fotos ya emparejadas** | `public/img/productos/normalizadas/` — generadas automáticamente, no editar |
@@ -176,11 +176,27 @@ listo, no hay que tocar código.
 | **Foto de "Sobre nosotros"** | `public/img/nosotros.svg` |
 | **Galería del local** | `public/img/galeria/galeria-1.svg` a `galeria-8.svg` |
 | **Tarjetas de categoría** | `public/img/categorias/` |
-| **Imagen para compartir** (WhatsApp, redes) | `public/og-image.png` — conviene 1200×630 px |
-| **Favicon** | `public/favicon.svg` |
+| **Imagen para compartir** (WhatsApp, redes) | `public/og-image.jpg` — se genera sola a partir del logo |
+| **Favicon** | `public/favicon.png` — se genera solo a partir del logo |
 
-> Las imágenes que vienen ahora son **placeholders** hechos a mano, no fotos reales.
-> El logo es una recreación: hay que reemplazarlo por el archivo original.
+### El logo
+
+Para cambiarlo alcanza con dejar el archivo nuevo en `public/img/` con un nombre que empiece con
+`logo` (por ejemplo `logo-vineriamartu.jpeg`) y volver a correr `npm run dev` o `npm run build`.
+
+El sitio no usa ese archivo directamente: **primero le saca el fondo blanco** y guarda el resultado
+en `public/img/logo.webp`, que es el que se muestra. Así el mismo logo funciona sobre la crema del
+header y sobre el carbón del footer, sin que quede un recuadro blanco alrededor.
+
+El blanco se borra desde los bordes hacia adentro, no por color: los blancos encerrados dentro del
+dibujo, como el interior del cartel "VINERIA", quedan intactos.
+
+Del mismo logo salen también el **favicon** (`public/favicon.png`) y la **imagen para compartir**
+(`public/og-image.jpg`, el logo sobre fondo oscuro en 1200×630). No hay que preparar nada aparte.
+
+> Si el logo nuevo ya viene en SVG, se usa tal cual sin procesar.
+
+> Las fotos del hero, la galería y las categorías siguen siendo **placeholders** hechos a mano.
 
 Las fotos de productos aceptan cualquier extensión sin tocar nada. Para el resto (hero, galería,
 categorías), si subís `.jpg` o `.png` en lugar de `.svg` hay que actualizar la extensión en los

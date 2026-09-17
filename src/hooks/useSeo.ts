@@ -30,7 +30,7 @@ function meta(atributo: 'name' | 'property', clave: string, contenido: string) {
  * el link se vea bien al compartirlo (los crawlers de buscadores ejecutan JS);
  * si en el futuro hace falta prerender real, la alternativa es vite-react-ssg.
  */
-export function useSeo({ titulo, descripcion, ruta, imagen = '/og-image.png', schema }: OpcionesSeo) {
+export function useSeo({ titulo, descripcion, ruta, imagen = '/og-image.jpg', schema }: OpcionesSeo) {
   useEffect(() => {
     const url = urlAbsoluta(ruta)
     const imagenAbsoluta = urlAbsoluta(imagen)
