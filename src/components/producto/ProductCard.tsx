@@ -20,11 +20,11 @@ export function ProductCard({ producto }: Props) {
         to={`/carta/${producto.id}`}
         className="flex h-full flex-col rounded-sm bg-white shadow-[0_1px_3px_rgba(28,26,25,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(28,26,25,0.12)]"
       >
-        <div className="relative overflow-hidden rounded-t-sm bg-crema-oscuro">
+        <div className="relative overflow-hidden rounded-t-sm bg-white">
           <Imagen
             src={producto.imagen}
             alt={`Botella de ${producto.nombre}`}
-            className={`aspect-[3/4] w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105 ${
+            className={`aspect-[3/4] w-full object-contain p-4 transition-transform duration-500 group-hover:scale-105 ${
               producto.disponible ? '' : 'opacity-45 grayscale'
             }`}
           />

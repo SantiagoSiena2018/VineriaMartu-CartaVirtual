@@ -65,7 +65,7 @@ function FichaProducto({ producto, canal }: { producto: (typeof PRODUCTOS)[numbe
         </nav>
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="relative overflow-hidden rounded-sm bg-crema-oscuro">
+          <div className="relative overflow-hidden rounded-sm border border-carbon/10 bg-white">
             <Imagen
               src={producto.imagen}
               alt={`Botella de ${producto.nombre}`}

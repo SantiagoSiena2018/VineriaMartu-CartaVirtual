@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-label="Imagen no disponible">
-  <rect width="300" height="400" fill="#f0e8db" />
-  <g fill="none" stroke="#9b1b1e" stroke-width="5" stroke-linejoin="round" opacity="0.35"
+  <!-- Fondo transparente: se adapta al recuadro donde se muestre. -->
+  <g fill="none" stroke="#9b1b1e" stroke-width="5" stroke-linejoin="round" opacity="0.3"
      transform="translate(150 178) scale(0.78) translate(-150 -196)">
     <path d="M132 70h36v58c0 14 26 34 26 66v122c0 10-8 18-18 18h-52c-10 0-18-8-18-18V194c0-32 26-52 26-66z" />
     <path d="M136 56h28v14h-28z" />
   </g>
   <text x="150" y="352" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15"
-        letter-spacing="1" fill="#9b1b1e" opacity="0.5">Foto no disponible</text>
+        letter-spacing="1" fill="#9b1b1e" opacity="0.45">Foto no disponible</text>
 </svg>

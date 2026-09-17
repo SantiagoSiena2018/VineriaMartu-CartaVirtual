@@ -49,8 +49,9 @@ El archivo tiene esta forma:
 }
 ```
 
-> ⚠️ Los productos que vienen cargados son **datos de prueba** para ver el sitio funcionando.
-> Hay que reemplazarlos por el catálogo real.
+> ⚠️ El catálogo cargado (23 productos) se armó a partir de las fotos que hay en
+> `public/img/productos/`. **Faltan los precios**: mientras el campo `precio` no esté, la carta
+> muestra "Consultar". Conviene revisar también nombres, cosechas y descripciones.
 
 ### Un producto completo
 
@@ -108,8 +109,8 @@ El archivo tiene esta forma:
 
 | Producto (`id`) | Archivo de la foto |
 |---|---|
-| `catena-malbec` | `public/img/productos/catena-malbec.jpg` |
-| `rutini-blend` | `public/img/productos/rutini-blend.jpg` |
+| `rutini-malbec` | `public/img/productos/rutini-malbec.jpg` |
+| `gran-enemigo` | `public/img/productos/gran-enemigo.jpg` |
 
 Sirve cualquier formato: `.jpg`, `.png`, `.webp`, `.avif` o `.svg`. Si hubiera dos archivos con el
 mismo nombre y distinta extensión, gana el más liviano (`.webp` antes que `.jpg`).
@@ -153,6 +154,7 @@ listo, no hay que tocar código.
 |---|---|
 | **Logo** | `public/img/logo-martu.svg` y `public/img/logo-martu-claro.svg` (este último es el del footer oscuro) |
 | **Fotos de productos** | `public/img/productos/`, con el `id` del producto como nombre (ver arriba) |
+| **Fotos descartadas** | `public/img/productos/duplicadas/` — quedan guardadas ahí y el sitio las ignora |
 | **Foto del hero** (portada) | `public/img/hero.svg` |
 | **Foto de "Sobre nosotros"** | `public/img/nosotros.svg` |
 | **Galería del local** | `public/img/galeria/galeria-1.svg` a `galeria-8.svg` |
@@ -245,9 +247,11 @@ agregar un carrito es sumar una capa, no reescribir lo que hay.
 
 - [ ] Número de WhatsApp (`src/data/negocio.ts`)
 - [ ] Historia del local, en el bloque "Sobre Vinería Martu" (`src/components/home/SobreNosotros.tsx`, buscar `[COMPLETAR]`)
-- [ ] Reemplazar los 18 productos de prueba por el catálogo real
-- [ ] Fotos de las botellas en `public/img/productos/`, nombradas con el `id` (`npm run imagenes` dice cuáles faltan)
+- [ ] **Cargar los precios** en `src/data/productos.json` (hoy todos muestran "Consultar")
+- [ ] Revisar nombres, cosechas y descripciones de los 23 productos
+- [ ] Sumar el resto del catálogo (blancos, rosados, cervezas, aperitivos): cada categoría aparece sola en el sitio cuando tiene productos
 - [ ] Fotos reales del logo original, el local y la galería
+- [ ] Fotos de las botellas nuevas que se vayan sumando (`npm run imagenes` dice cuáles faltan)
 - [ ] Dominio definitivo (`sitioUrl` en `src/data/negocio.ts` y `public/robots.txt`)
 
 ---
